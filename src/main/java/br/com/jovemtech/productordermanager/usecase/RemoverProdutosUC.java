@@ -2,6 +2,7 @@ package br.com.jovemtech.productordermanager.usecase;
 
 import br.com.jovemtech.productordermanager.infrastructure.repository.ProdutoRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,6 +12,10 @@ public class RemoverProdutosUC {
     private final ProdutoRepository produtoRepository;
 
     public void execute(){
-        produtoRepository.deleteAll();
+        try{
+            produtoRepository.deleteAll();
+        } catch (DataIntegrityViolationException e){
+            throw new RuntimeException(e.getMessage());
+        }
     }
 }
