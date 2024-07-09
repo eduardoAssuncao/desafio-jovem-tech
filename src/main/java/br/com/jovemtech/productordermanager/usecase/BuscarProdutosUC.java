@@ -1,8 +1,10 @@
 package br.com.jovemtech.productordermanager.usecase;
 
+import br.com.jovemtech.productordermanager.config.exception.ResourceNotFoundException;
 import br.com.jovemtech.productordermanager.dto.ProdutoGetDTO;
 import br.com.jovemtech.productordermanager.infrastructure.repository.ProdutoRepository;
 import br.com.jovemtech.productordermanager.schema.ProdutoSchema;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -20,8 +22,13 @@ public class BuscarProdutosUC {
 
     @Transactional(readOnly = true)
     public List<ProdutoGetDTO> execute(){
-        List<ProdutoSchema> produtos = produtoRepository.findAll();
-        return produtos.stream().map(produtoSchema ->
-                modelMapper.map(produtoSchema, ProdutoGetDTO.class)).collect(Collectors.toList());
+        try{
+            List<ProdutoSchema> produtos = produtoRepository.findAll();
+            return produtos.stream().map(produtoSchema ->
+                    modelMapper.map(produtoSchema, ProdutoGetDTO.class)).collect(Collectors.toList());
+
+        } catch (EntityNotFoundException e){
+            throw new ResourceNotFoundException(e.getMessage());
+        }
     }
 }
