@@ -114,6 +114,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
+<!--                            http://localhost:8080/swagger-ui/index.html-->
                             <inputSpec>
                                 ${project.basedir}/src/main/resources/swagger.yaml
                             </inputSpec>

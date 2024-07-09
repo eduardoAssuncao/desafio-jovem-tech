@@ -1,7 +1,6 @@
 package br.com.jovemtech.productordermanager.usecase;
 
 import br.com.jovemtech.productordermanager.dto.ProdutoDTO;
-import br.com.jovemtech.productordermanager.dto.ProdutoGetDTO;
 import br.com.jovemtech.productordermanager.infrastructure.repository.ProdutoRepository;
 import br.com.jovemtech.productordermanager.schema.ProdutoSchema;
 import lombok.RequiredArgsConstructor;
@@ -11,15 +10,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class CriarProdutoUC {
+public class AtualizarProdutoPorIdUC {
 
     private final ProdutoRepository produtoRepository;
     private final ModelMapper modelMapper;
 
     @Transactional
-    public ProdutoGetDTO execute(ProdutoDTO dto){
-        ProdutoSchema schema = modelMapper.map(dto, ProdutoSchema.class);
-        schema = produtoRepository.save(schema);
-        return modelMapper.map(schema, ProdutoGetDTO.class);
+    public ProdutoDTO execute(Long id, ProdutoDTO dto) {
+        ProdutoSchema entity = produtoRepository.getReferenceById(id);
+        modelMapper.map(dto, entity);
+        entity = produtoRepository.save(entity);
+        return new ProdutoDTO(entity);
     }
 }

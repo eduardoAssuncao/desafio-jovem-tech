@@ -1,6 +1,5 @@
 package br.com.jovemtech.productordermanager.usecase;
 
-import br.com.jovemtech.productordermanager.dto.ProdutoDTO;
 import br.com.jovemtech.productordermanager.dto.ProdutoGetDTO;
 import br.com.jovemtech.productordermanager.infrastructure.repository.ProdutoRepository;
 import br.com.jovemtech.productordermanager.schema.ProdutoSchema;
@@ -9,17 +8,20 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
-public class CriarProdutoUC {
+public class BuscarProdutosUC {
 
     private final ProdutoRepository produtoRepository;
     private final ModelMapper modelMapper;
 
-    @Transactional
-    public ProdutoGetDTO execute(ProdutoDTO dto){
-        ProdutoSchema schema = modelMapper.map(dto, ProdutoSchema.class);
-        schema = produtoRepository.save(schema);
-        return modelMapper.map(schema, ProdutoGetDTO.class);
+    @Transactional(readOnly = true)
+    public List<ProdutoGetDTO> execute(){
+        List<ProdutoSchema> produtos = produtoRepository.findAll();
+        return produtos.stream().map(produtoSchema ->
+                modelMapper.map(produtoSchema, ProdutoGetDTO.class)).collect(Collectors.toList());
     }
 }
