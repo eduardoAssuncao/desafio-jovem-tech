@@ -1,18 +1,14 @@
 package br.com.jovemtech.productordermanager.schema;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
 @Data
-@EqualsAndHashCode
-@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "tb_cliente")
 public class ClienteSchema {
@@ -25,7 +21,7 @@ public class ClienteSchema {
     private String cpf;
 
     @OneToMany(mappedBy = "cliente")
-    private Set<PedidoSchema> pedidos = new HashSet<>();
+    private Set<PedidoSchema> pedidos = new LinkedHashSet<>();
     @ManyToOne
     @JoinColumn(name = "empresa_id")
     private EmpresaSchema empresa;
