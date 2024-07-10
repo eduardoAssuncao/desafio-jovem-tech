@@ -27,7 +27,7 @@ public class ProdutoSchema {
     private BigDecimal preco;
     private Integer quatidadeEtoque;
 
-    @OneToMany(mappedBy = "produto")
+    @OneToMany(mappedBy = "id.produto")
     private Set<ItemPedido> itens = new HashSet<>();
 
     @ManyToOne

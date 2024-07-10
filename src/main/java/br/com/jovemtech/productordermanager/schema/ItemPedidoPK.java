@@ -7,11 +7,13 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @Embeddable
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode
-public class ItemPedidoPK {
+public class ItemPedidoPK implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "produto_id")
