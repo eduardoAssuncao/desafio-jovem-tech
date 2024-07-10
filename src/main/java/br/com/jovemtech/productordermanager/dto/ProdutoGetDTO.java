@@ -1,15 +1,11 @@
 package br.com.jovemtech.productordermanager.dto;
 
 import br.com.jovemtech.productordermanager.schema.ProdutoSchema;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class ProdutoGetDTO {
 
     private Long id;
@@ -17,6 +13,7 @@ public class ProdutoGetDTO {
     private String descricao;
     private BigDecimal preco;
     private Integer quatidadeEtoque;
+    private EmpresaDTO empresa;
 
     public ProdutoGetDTO(ProdutoSchema produtoSchema) {
         this.id = produtoSchema.getId();
@@ -24,5 +21,6 @@ public class ProdutoGetDTO {
         this.descricao = produtoSchema.getDescricao();
         this.preco = produtoSchema.getPreco();
         this.quatidadeEtoque = produtoSchema.getQuatidadeEtoque();
+        this.empresa = new EmpresaDTO(produtoSchema.getEmpresa());
     }
 }

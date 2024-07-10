@@ -1,27 +1,24 @@
 package br.com.jovemtech.productordermanager.dto;
 
 import br.com.jovemtech.productordermanager.schema.ProdutoSchema;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class ProdutoDTO {
 
     private String nome;
     private String descricao;
     private BigDecimal preco;
     private Integer quatidadeEtoque;
+    private EmpresaDTO empresa;
 
-    public ProdutoDTO(ProdutoSchema produtoSchema) {
-        this.nome = produtoSchema.getNome();
-        this.descricao = produtoSchema.getDescricao();
-        this.preco = produtoSchema.getPreco();
-        this.quatidadeEtoque = produtoSchema.getQuatidadeEtoque();
+    public ProdutoDTO(ProdutoSchema produto) {
+        this.nome = produto.getNome();
+        this.descricao = produto.getDescricao();
+        this.preco = produto.getPreco();
+        this.quatidadeEtoque = produto.getQuatidadeEtoque();
+        this.empresa = new EmpresaDTO(produto.getEmpresa());
     }
 }

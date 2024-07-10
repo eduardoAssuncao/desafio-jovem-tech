@@ -10,11 +10,9 @@ import java.math.BigDecimal;
 
 @Entity
 @Data
-@EqualsAndHashCode
-@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "tb_item_pedido")
-public class ItemPedido {
+public class ItemPedidoSchema {
 
     @EmbeddedId
     private ItemPedidoPK id = new ItemPedidoPK();
@@ -22,7 +20,7 @@ public class ItemPedido {
     private Integer quantidade;
     private BigDecimal preco;
 
-    public ItemPedido(ProdutoSchema produto, PedidoSchema pedido,Integer quantidade, BigDecimal preco) {
+    public ItemPedidoSchema(ProdutoSchema produto, PedidoSchema pedido, Integer quantidade, BigDecimal preco) {
         id.setProduto(produto);
         id.setPedido(pedido);
         this.quantidade = quantidade;

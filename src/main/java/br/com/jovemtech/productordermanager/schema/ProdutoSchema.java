@@ -1,19 +1,15 @@
 package br.com.jovemtech.productordermanager.schema;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
 @Data
-@EqualsAndHashCode
-@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "tb_produto")
 public class ProdutoSchema {
@@ -27,8 +23,9 @@ public class ProdutoSchema {
     private BigDecimal preco;
     private Integer quatidadeEtoque;
 
-    @OneToMany(mappedBy = "id.produto")
-    private Set<ItemPedido> itens = new HashSet<>();
+    //Faz sentido poder acessar uma lista de itens no meu Produto?
+//    @OneToMany(mappedBy = "id.produto")
+//    private Set<ItemPedido> itens = new LinkedHashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "empresa_id")
