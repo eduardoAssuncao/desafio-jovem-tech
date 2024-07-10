@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,23 +14,19 @@ import java.util.Set;
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "tb_produto")
-public class ProdutoSchema {
+@Table(name = "tb_cliente")
+public class ClienteSchema {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    @Column(columnDefinition = "TEXT")
-    private String descricao;
-    private BigDecimal preco;
-    private Integer quatidadeEtoque;
+    private String email;
+    private String cpf;
 
-    @OneToMany(mappedBy = "id.produto")
-    private Set<ItemPedido> itens = new HashSet<>();
-
+    @OneToMany(mappedBy = "cliente")
+    private Set<PedidoSchema> pedidos = new HashSet<>();
     @ManyToOne
     @JoinColumn(name = "empresa_id")
     private EmpresaSchema empresa;
-
 }
