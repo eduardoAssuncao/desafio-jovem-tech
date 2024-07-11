@@ -1,7 +1,7 @@
 package br.com.jovemtech.productordermanager.controller.produto;
 
 import br.com.jovemtech.productordermanager.dto.ProdutoDTO;
-import br.com.jovemtech.productordermanager.usecase.RemoverProdutosUC;
+import br.com.jovemtech.productordermanager.usecase.produto.RemoverProdutosUC;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

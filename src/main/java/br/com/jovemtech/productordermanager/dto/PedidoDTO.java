@@ -1,16 +1,15 @@
 package br.com.jovemtech.productordermanager.dto;
 
 import br.com.jovemtech.productordermanager.schema.*;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Data
+@NoArgsConstructor
 public class PedidoDTO {
 
     private Instant dataPedido;

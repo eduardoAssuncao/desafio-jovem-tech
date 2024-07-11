@@ -2,10 +2,12 @@ package br.com.jovemtech.productordermanager.dto;
 
 import br.com.jovemtech.productordermanager.schema.ProdutoSchema;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
 @Data
+@NoArgsConstructor
 public class ProdutoGetDTO {
 
     private Long id;
@@ -14,6 +16,7 @@ public class ProdutoGetDTO {
     private BigDecimal preco;
     private Integer quatidadeEtoque;
     private EmpresaDTO empresa;
+
 
     public ProdutoGetDTO(ProdutoSchema produtoSchema) {
         this.id = produtoSchema.getId();

@@ -1,4 +1,4 @@
-package br.com.jovemtech.productordermanager.usecase;
+package br.com.jovemtech.productordermanager.usecase.produto;
 
 import br.com.jovemtech.productordermanager.config.exception.ResourceNotFoundException;
 import br.com.jovemtech.productordermanager.dto.ProdutoDTO;
@@ -23,10 +23,10 @@ public class AtualizarProdutoPorIdUC {
             throw new ResourceNotFoundException("Erro ao buscar produto com o id " + id);
         }
         try{
-            ProdutoSchema entity = produtoRepository.getReferenceById(id);
-            modelMapper.map(dto, entity);
-            entity = produtoRepository.save(entity);
-            return new ProdutoDTO(entity);
+            ProdutoSchema produto = produtoRepository.getReferenceById(id);
+            modelMapper.map(dto, produto);
+            produtoRepository.save(produto);
+            return modelMapper.map(produto, ProdutoDTO.class);
         } catch (EntityNotFoundException e){
             throw new ResourceNotFoundException(e.getMessage());
         }

@@ -2,11 +2,13 @@ package br.com.jovemtech.productordermanager.dto;
 
 import br.com.jovemtech.productordermanager.schema.ClienteSchema;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Data
+@NoArgsConstructor
 public class ClienteDTO {
 
     private String nome;

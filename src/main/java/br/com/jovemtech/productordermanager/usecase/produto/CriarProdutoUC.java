@@ -1,6 +1,6 @@
-package br.com.jovemtech.productordermanager.usecase;
+package br.com.jovemtech.productordermanager.usecase.produto;
 
-import br.com.jovemtech.productordermanager.config.exception.ResourceNotFoundException;
+import br.com.jovemtech.productordermanager.dto.ProdutoDTO;
 import br.com.jovemtech.productordermanager.dto.ProdutoGetDTO;
 import br.com.jovemtech.productordermanager.infrastructure.repository.ProdutoRepository;
 import br.com.jovemtech.productordermanager.schema.ProdutoSchema;
@@ -9,19 +9,17 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
-public class BuscarProdutoPorIdUC {
+public class CriarProdutoUC {
 
     private final ProdutoRepository produtoRepository;
     private final ModelMapper modelMapper;
 
-    @Transactional(readOnly = true)
-    public ProdutoGetDTO execute(Long id){
-        ProdutoSchema produtoSchema = produtoRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Erro ao buscar produto com o id " + id));
-        return modelMapper.map(produtoSchema, ProdutoGetDTO.class);
+    @Transactional
+    public ProdutoGetDTO execute(ProdutoDTO dto){
+        ProdutoSchema produto = modelMapper.map(dto, ProdutoSchema.class);
+        produto = produtoRepository.save(produto);
+        return modelMapper.map(produto, ProdutoGetDTO.class);
     }
 }

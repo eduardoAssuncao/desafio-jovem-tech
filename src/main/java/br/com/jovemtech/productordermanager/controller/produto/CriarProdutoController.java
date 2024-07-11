@@ -2,15 +2,13 @@ package br.com.jovemtech.productordermanager.controller.produto;
 
 import br.com.jovemtech.productordermanager.dto.ProdutoDTO;
 import br.com.jovemtech.productordermanager.dto.ProdutoGetDTO;
-import br.com.jovemtech.productordermanager.usecase.CriarProdutoUC;
+import br.com.jovemtech.productordermanager.usecase.produto.CriarProdutoUC;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
