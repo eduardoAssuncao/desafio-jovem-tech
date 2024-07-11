@@ -1,4 +1,4 @@
-package br.com.jovemtech.productordermanager.usecase;
+package br.com.jovemtech.productordermanager.usecase.produto;
 
 import br.com.jovemtech.productordermanager.config.exception.ResourceNotFoundException;
 import br.com.jovemtech.productordermanager.dto.ProdutoGetDTO;
@@ -24,8 +24,8 @@ public class BuscarProdutosUC {
     public List<ProdutoGetDTO> execute(){
         try{
             List<ProdutoSchema> produtos = produtoRepository.findAll();
-            return produtos.stream().map(produtoSchema ->
-                    modelMapper.map(produtoSchema, ProdutoGetDTO.class)).collect(Collectors.toList());
+            return produtos.stream().map(produto ->
+                    modelMapper.map(produto, ProdutoGetDTO.class)).collect(Collectors.toList());
 
         } catch (EntityNotFoundException e){
             throw new ResourceNotFoundException(e.getMessage());

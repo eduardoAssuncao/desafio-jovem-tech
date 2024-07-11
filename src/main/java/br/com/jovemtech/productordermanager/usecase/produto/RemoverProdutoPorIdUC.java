@@ -1,4 +1,4 @@
-package br.com.jovemtech.productordermanager.usecase;
+package br.com.jovemtech.productordermanager.usecase.produto;
 
 import br.com.jovemtech.productordermanager.config.exception.ResourceNotFoundException;
 import br.com.jovemtech.productordermanager.infrastructure.repository.ProdutoRepository;
