@@ -1,6 +1,7 @@
 package br.com.jovemtech.productordermanager.usecase.pedido;
 
 import br.com.jovemtech.productordermanager.dto.ItemPedidoDTO;
+import br.com.jovemtech.productordermanager.dto.PedidoDTO;
 import br.com.jovemtech.productordermanager.dto.PedidoGetDTO;
 import br.com.jovemtech.productordermanager.infrastructure.repository.ItemPedidoRepository;
 import br.com.jovemtech.productordermanager.infrastructure.repository.PedidoRepository;
@@ -26,7 +27,7 @@ public class CriarPedidoUC {
     private final ItemPedidoRepository itemPedidoRepository;
 
     @Transactional
-    public PedidoGetDTO execute(PedidoGetDTO dto){
+    public PedidoDTO execute(PedidoGetDTO dto){
 
         PedidoSchema pedido = new PedidoSchema();
 
@@ -42,6 +43,6 @@ public class CriarPedidoUC {
         pedidoRepository.save(pedido);
         itemPedidoRepository.saveAll(pedido.getItens());
 
-        return modelMapper.map(pedido, PedidoGetDTO.class);
+        return modelMapper.map(pedido, PedidoDTO.class);
     }
 }

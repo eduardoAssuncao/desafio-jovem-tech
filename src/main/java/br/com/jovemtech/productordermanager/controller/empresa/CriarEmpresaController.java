@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -27,7 +28,7 @@ public class CriarEmpresaController {
     @Operation(summary = "EndPoint de Empresa", description = "Requisição para realizar a criação de uma Empresa", tags = {"Criar Empresa"}, operationId = "criarEmpresa", requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @Content(schema = @Schema(implementation = EmpresaDTO.class))))
     @ApiResponses(value = {@ApiResponse(responseCode = "201", description = "Operação bem sucedida", content = @Content(mediaType = "application/json", schema = @Schema(implementation = EmpresaDTO.class))),@ApiResponse(responseCode = "400", description = "Formato da requisição incorreto.", content = @Content(schema = @Schema()))})
     @PostMapping
-    public ResponseEntity<EmpresaDTO> criarEmpresa(EmpresaDTO dto) {
+    public ResponseEntity<EmpresaDTO> criarEmpresa(@RequestBody EmpresaDTO dto) {
         EmpresaGetDTO empresa = criarEmpresaUC.execute(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(empresa.getId()).toUri();
