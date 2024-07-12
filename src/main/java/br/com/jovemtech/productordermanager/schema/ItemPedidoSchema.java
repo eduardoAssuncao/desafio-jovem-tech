@@ -17,6 +17,7 @@ public class ItemPedidoSchema {
     @EmbeddedId
     private ItemPedidoPK id = new ItemPedidoPK();
 
+    private String nome;
     private Integer quantidade;
     private BigDecimal preco;
 

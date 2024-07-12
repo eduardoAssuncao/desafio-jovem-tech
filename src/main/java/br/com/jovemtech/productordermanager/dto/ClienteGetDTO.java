@@ -9,15 +9,17 @@ import java.util.Set;
 
 @Data
 @NoArgsConstructor
-public class ClienteDTO {
+public class ClienteGetDTO {
 
+    private Long id;
     private String nome;
     private String email;
     private String cpf;
     private EmpresaDTO empresa;
     private Set<PedidoDTO> pedidos = new LinkedHashSet<>();
 
-    public ClienteDTO(ClienteSchema cliente) {
+    public ClienteGetDTO(ClienteSchema cliente) {
+        this.id = cliente.getId();
         this.nome = cliente.getNome();
         this.email = cliente.getEmail();
         this.cpf = cliente.getCpf();

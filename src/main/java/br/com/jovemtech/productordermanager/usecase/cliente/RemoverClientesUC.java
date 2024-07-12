@@ -4,6 +4,7 @@ import br.com.jovemtech.productordermanager.infrastructure.repository.ClienteRep
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -12,7 +13,7 @@ public class RemoverClientesUC {
 
     private final ClienteRepository clienteRepository;
 
-    @Transactional
+    @Transactional(propagation = Propagation.SUPPORTS)
     public void execute(){
         try{
             clienteRepository.deleteAll();

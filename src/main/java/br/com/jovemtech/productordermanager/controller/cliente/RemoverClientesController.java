@@ -1,7 +1,7 @@
-package br.com.jovemtech.productordermanager.controller.produto;
+package br.com.jovemtech.productordermanager.controller.cliente;
 
-import br.com.jovemtech.productordermanager.dto.ProdutoDTO;
-import br.com.jovemtech.productordermanager.usecase.produto.RemoverProdutoPorIdUC;
+import br.com.jovemtech.productordermanager.dto.ClienteDTO;
+import br.com.jovemtech.productordermanager.usecase.cliente.RemoverClientesUC;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -10,22 +10,21 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/produto")
+@RequestMapping("/cliente")
 @RequiredArgsConstructor
-public class RemoverProdutoPorIdController {
+public class RemoverClientesController {
 
-    private final RemoverProdutoPorIdUC removerProdutoPorIdUC;
+    private final RemoverClientesUC removerClientesUC;
 
-    @Operation(summary = "EndPoint de Produto", description = "Requisição para remover Produto por ID", tags = {"Deletar Produto"}, operationId = "deletarProduto")
+    @Operation(summary = "EndPoint de Cliente", description = "Requisição para remover todos os Clientes", tags = {"Deletar Clientes"}, operationId = "removerCliente")
     @ApiResponses(value = {@ApiResponse(responseCode = "204", description = "Operação bem sucedida", content = @Content(mediaType = "application/json")),@ApiResponse(responseCode = "400", description = "Formato da requisição incorreto.", content = @Content(schema = @Schema()))})
-    @DeleteMapping("/{id}")
-    public ResponseEntity<ProdutoDTO> removerProdutoPorId(@PathVariable Long id) {
-        removerProdutoPorIdUC.execute(id);
+    @DeleteMapping
+    public ResponseEntity<ClienteDTO> removerClientes() {
+        removerClientesUC.execute();
         return ResponseEntity.noContent().build();
     }
 }

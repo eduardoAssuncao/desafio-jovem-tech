@@ -8,16 +8,16 @@ import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
-public class ItemPedidoDTO {
+public class ItemPedidoGetDTO {
 
     private Long produtoId;
     private String nome;
     private Integer quantidade;
     private BigDecimal preco;
 
-    public ItemPedidoDTO(ItemPedidoSchema itemPedido) {
+    public ItemPedidoGetDTO(ItemPedidoSchema itemPedido) {
         this.produtoId = itemPedido.getId().getProduto().getId();
-        this.nome = itemPedido.getNome();
+        this.nome = itemPedido.getId().getProduto().getNome();
         this.quantidade = itemPedido.getQuantidade();
         this.preco = itemPedido.getPreco();
     }

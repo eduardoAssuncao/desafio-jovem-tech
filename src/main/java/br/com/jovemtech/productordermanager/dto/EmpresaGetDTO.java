@@ -9,8 +9,9 @@ import java.util.Set;
 
 @Data
 @NoArgsConstructor
-public class EmpresaDTO {
+public class EmpresaGetDTO {
 
+    private Long id;
     private String nomeFantasia;
     private String endereco;
     private String email;
@@ -18,7 +19,8 @@ public class EmpresaDTO {
     private Set<ClienteDTO> clientes = new LinkedHashSet<>();
     private Set<ProdutoDTO> produtos = new LinkedHashSet<>();
 
-    public EmpresaDTO(EmpresaSchema empresa) {
+    public EmpresaGetDTO(EmpresaSchema empresa) {
+        this.id = empresa.getId();
         this.nomeFantasia = empresa.getNomeFantasia();
         this.endereco = empresa.getEndereco();
         this.email = empresa.getEmail();

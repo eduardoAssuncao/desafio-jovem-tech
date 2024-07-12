@@ -1,6 +1,6 @@
-package br.com.jovemtech.productordermanager.usecase.produto;
+package br.com.jovemtech.productordermanager.usecase.pedido;
 
-import br.com.jovemtech.productordermanager.infrastructure.repository.ProdutoRepository;
+import br.com.jovemtech.productordermanager.infrastructure.repository.PedidoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -9,14 +9,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class RemoverProdutosUC {
+public class RemoverPedidosUC {
 
-    private final ProdutoRepository produtoRepository;
+    private final PedidoRepository pedidoRepository;
 
     @Transactional(propagation = Propagation.SUPPORTS)
-    public void execute(){
+    public void removerPedidos(){
         try{
-            produtoRepository.deleteAll();
+            pedidoRepository.deleteAll();
         } catch (DataIntegrityViolationException e){
             throw new RuntimeException(e.getMessage());
         }

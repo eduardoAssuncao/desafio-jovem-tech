@@ -15,7 +15,6 @@ public class ProdutoDTO {
     private String descricao;
     private BigDecimal preco;
     private Integer quatidadeEtoque;
-    @JsonIgnore
     private EmpresaDTO empresa;
 
     public ProdutoDTO(ProdutoSchema produto) {

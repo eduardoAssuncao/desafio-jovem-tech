@@ -1,6 +1,7 @@
 package br.com.jovemtech.productordermanager.dto;
 
-import br.com.jovemtech.productordermanager.schema.*;
+import br.com.jovemtech.productordermanager.schema.PedidoSchema;
+import br.com.jovemtech.productordermanager.schema.StatusPedido;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,15 +11,17 @@ import java.util.Set;
 
 @Data
 @NoArgsConstructor
-public class PedidoDTO {
+public class PedidoGetDTO {
 
+    private Long id;
     private Instant dataPedido;
     private StatusPedido status;
     private ClienteDTO cliente;
     private EmpresaDTO empresa;
     private Set<ItemPedidoDTO> itens = new LinkedHashSet<>();
 
-    public PedidoDTO(PedidoSchema pedido) {
+    public PedidoGetDTO(PedidoSchema pedido) {
+        this.id = pedido.getId();
         this.dataPedido = pedido.getDataPedido();
         this.status = pedido.getStatus();
         this.cliente = new ClienteDTO(pedido.getCliente());
