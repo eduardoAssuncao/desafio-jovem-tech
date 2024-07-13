@@ -24,7 +24,7 @@ public class AtualizarEmpresaPorIdUC {
         }
         try{
             EmpresaSchema empresa = empresaRepository.getReferenceById(id);
-            modelMapper.map(empresa, dto);
+            modelMapper.map(dto, empresa);
             empresaRepository.save(empresa);
             return modelMapper.map(empresa, EmpresaDTO.class);
         } catch (EntityNotFoundException e){

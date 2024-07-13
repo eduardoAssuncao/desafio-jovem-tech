@@ -1,5 +1,6 @@
 package br.com.jovemtech.productordermanager.schema;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,7 +29,20 @@ public class ProdutoSchema {
 //    private Set<ItemPedido> itens = new LinkedHashSet<>();
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "empresa_id")
     private EmpresaSchema empresa;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProdutoSchema that = (ProdutoSchema) o;
+        return id != null && id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 31; // Valor fixo para hashCode, ou pode usar um valor baseado no ID se preferir
+    }
 }

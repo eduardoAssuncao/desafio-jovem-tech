@@ -10,10 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
@@ -27,11 +24,11 @@ public class CriarClienteController {
 
     @Operation(summary = "EndPoint de Cliente", description = "Requisição para realizar a criação de um Cliente", tags = {"Criar Cliente"}, operationId = "criarCliente", requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @Content(schema = @Schema(implementation = ClienteDTO.class))))
     @ApiResponses(value = {@ApiResponse(responseCode = "201", description = "Operação bem sucedida", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ClienteDTO.class))),@ApiResponse(responseCode = "400", description = "Formato da requisição incorreto.", content = @Content(schema = @Schema()))})
-    @PostMapping
-    public ResponseEntity<ClienteDTO> criarCliente(@RequestBody ClienteDTO dto) {
-        ClienteGetDTO cliente = criarClienteUC.execute(dto);
+    @PostMapping("/{idDaEmpresa}")
+    public ResponseEntity<ClienteGetDTO> criarCliente(@PathVariable Long idDaEmpresa, @RequestBody ClienteDTO dto) {
+        ClienteGetDTO cliente = criarClienteUC.execute(dto, idDaEmpresa);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(cliente.getId()).toUri();
-        return ResponseEntity.created(uri).body(dto);
+        return ResponseEntity.created(uri).body(cliente);
     }
 }
