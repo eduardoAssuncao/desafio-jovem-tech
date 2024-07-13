@@ -1,5 +1,6 @@
 package br.com.jovemtech.productordermanager.schema;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,10 +23,12 @@ public class PedidoSchema {
     private StatusPedido status;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "client_id")
     private ClienteSchema cliente;
 
-    @OneToMany(mappedBy = "id.pedido")
+    @OneToMany(mappedBy = "id.pedido", fetch = FetchType.EAGER)
+    @JsonIgnore
     private Set<ItemPedidoSchema> itens = new LinkedHashSet<>();
 
     //@ManyToOne
@@ -43,5 +46,15 @@ public class PedidoSchema {
     @Override
     public int hashCode() {
         return 31;
+    }
+
+    @Override
+    public String toString() {
+        return "PedidoSchema{" +
+                "id=" + id +
+                ", dataPedido=" + dataPedido +
+                ", status=" + status +
+                ", clienteId=" + (cliente != null ? cliente.getId() : null) +
+                '}';
     }
 }

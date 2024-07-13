@@ -26,6 +26,7 @@ public class ClienteSchema {
 
     @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
     private Set<PedidoSchema> pedidos = new LinkedHashSet<>();
+
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "empresa_id")
@@ -42,5 +43,16 @@ public class ClienteSchema {
     @Override
     public int hashCode() {
         return 31; // Valor fixo para hashCode, ou pode usar um valor baseado no ID se preferir
+    }
+
+    @Override
+    public String toString() {
+        return "ClienteSchema{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", empresaId=" + (empresa != null ? empresa.getId() : null) +
+                '}';
     }
 }
