@@ -29,10 +29,10 @@ public class CriarPedidoController {
     @Operation(summary = "EndPoint de Pedido", description = "Requisição para realizar a criação de um Pedido", tags = {"Criar Pedido"}, operationId = "criarPedido", requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @Content(schema = @Schema(implementation = PedidoDTO.class))))
     @ApiResponses(value = {@ApiResponse(responseCode = "201", description = "Operação bem sucedida", content = @Content(mediaType = "application/json", schema = @Schema(implementation = PedidoDTO.class))),@ApiResponse(responseCode = "400", description = "Formato da requisição incorreto.", content = @Content(schema = @Schema()))})
     @PostMapping
-    public ResponseEntity<PedidoDTO> criarPedido(@RequestBody PedidoGetDTO dto) {
-        PedidoDTO pedido = criarPedidoUC.execute(dto);
+    public ResponseEntity<PedidoGetDTO> criarPedido(@RequestBody PedidoDTO dto) {
+        PedidoGetDTO pedido = criarPedidoUC.execute(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}").buildAndExpand(dto.getId()).toUri();
+                .path("/{id}").buildAndExpand(pedido.getId()).toUri();
         return ResponseEntity.created(uri).body(pedido);
     }
 

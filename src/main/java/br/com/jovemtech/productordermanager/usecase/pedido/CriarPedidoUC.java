@@ -27,7 +27,7 @@ public class CriarPedidoUC {
     private final ItemPedidoRepository itemPedidoRepository;
 
     @Transactional
-    public PedidoDTO execute(PedidoGetDTO dto){
+    public PedidoGetDTO execute(PedidoDTO dto){
 
         PedidoSchema pedido = new PedidoSchema();
 
@@ -43,6 +43,6 @@ public class CriarPedidoUC {
         pedidoRepository.save(pedido);
         itemPedidoRepository.saveAll(pedido.getItens());
 
-        return modelMapper.map(pedido, PedidoDTO.class);
+        return modelMapper.map(pedido, PedidoGetDTO.class);
     }
 }

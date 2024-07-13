@@ -28,7 +28,20 @@ public class PedidoSchema {
     @OneToMany(mappedBy = "id.pedido")
     private Set<ItemPedidoSchema> itens = new LinkedHashSet<>();
 
-    @ManyToOne
-    @JoinColumn(name = "empresa_id")
-    private EmpresaSchema empresa;
+    //@ManyToOne
+    //@JoinColumn(name = "empresa_id")
+    //private EmpresaSchema empresa;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PedidoSchema that = (PedidoSchema) o;
+        return id != null && id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
 }

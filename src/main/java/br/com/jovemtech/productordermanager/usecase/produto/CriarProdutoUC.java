@@ -1,9 +1,16 @@
 package br.com.jovemtech.productordermanager.usecase.produto;
 
+import br.com.jovemtech.productordermanager.dto.ClienteGetDTO;
+import br.com.jovemtech.productordermanager.dto.EmpresaGetDTO;
 import br.com.jovemtech.productordermanager.dto.ProdutoDTO;
 import br.com.jovemtech.productordermanager.dto.ProdutoGetDTO;
+import br.com.jovemtech.productordermanager.infrastructure.repository.EmpresaRepository;
 import br.com.jovemtech.productordermanager.infrastructure.repository.ProdutoRepository;
+import br.com.jovemtech.productordermanager.schema.ClienteSchema;
+import br.com.jovemtech.productordermanager.schema.EmpresaSchema;
 import br.com.jovemtech.productordermanager.schema.ProdutoSchema;
+import br.com.jovemtech.productordermanager.usecase.empresa.BuscarEmpresaPorIdUC;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -14,12 +21,20 @@ import org.springframework.transaction.annotation.Transactional;
 public class CriarProdutoUC {
 
     private final ProdutoRepository produtoRepository;
+    private final BuscarEmpresaPorIdUC buscarEmpresaPorIdUC;
+    private final EmpresaRepository empresaRepository;
     private final ModelMapper modelMapper;
 
     @Transactional
-    public ProdutoGetDTO execute(ProdutoDTO dto){
+    public ProdutoGetDTO execute(ProdutoDTO dto, Long idEmpresa){
+        EmpresaSchema empresa = empresaRepository.findById(idEmpresa)
+                .orElseThrow(() -> new EntityNotFoundException("Empresa não encontrada"));
         ProdutoSchema produto = modelMapper.map(dto, ProdutoSchema.class);
-        produto = produtoRepository.save(produto);
-        return modelMapper.map(produto, ProdutoGetDTO.class);
+        produto.setEmpresa(empresa);
+        ProdutoSchema produtoSalvo = produtoRepository.save(produto);
+        empresa.getProdutos().add(produtoSalvo);
+        empresaRepository.save(empresa);
+        return modelMapper.map(produtoSalvo, ProdutoGetDTO.class);
+
     }
 }

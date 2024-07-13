@@ -28,10 +28,10 @@ public class CriarEmpresaController {
     @Operation(summary = "EndPoint de Empresa", description = "Requisição para realizar a criação de uma Empresa", tags = {"Criar Empresa"}, operationId = "criarEmpresa", requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @Content(schema = @Schema(implementation = EmpresaDTO.class))))
     @ApiResponses(value = {@ApiResponse(responseCode = "201", description = "Operação bem sucedida", content = @Content(mediaType = "application/json", schema = @Schema(implementation = EmpresaDTO.class))),@ApiResponse(responseCode = "400", description = "Formato da requisição incorreto.", content = @Content(schema = @Schema()))})
     @PostMapping
-    public ResponseEntity<EmpresaDTO> criarEmpresa(@RequestBody EmpresaDTO dto) {
+    public ResponseEntity<EmpresaGetDTO> criarEmpresa(@RequestBody EmpresaDTO dto) {
         EmpresaGetDTO empresa = criarEmpresaUC.execute(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(empresa.getId()).toUri();
-        return ResponseEntity.created(uri).body(dto);
+        return ResponseEntity.created(uri).body(empresa);
     }
 }
