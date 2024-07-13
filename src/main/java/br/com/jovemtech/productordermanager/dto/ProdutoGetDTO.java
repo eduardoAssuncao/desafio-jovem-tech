@@ -17,7 +17,6 @@ public class ProdutoGetDTO {
     private Integer quatidadeEtoque;
     private EmpresaDTO empresa;
 
-
     public ProdutoGetDTO(ProdutoSchema produtoSchema) {
         this.id = produtoSchema.getId();
         this.nome = produtoSchema.getNome();

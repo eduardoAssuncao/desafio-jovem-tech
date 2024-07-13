@@ -1,7 +1,7 @@
-package br.com.jovemtech.productordermanager.controller.produto;
+package br.com.jovemtech.productordermanager.controller.empresa;
 
-import br.com.jovemtech.productordermanager.dto.ProdutoDTO;
-import br.com.jovemtech.productordermanager.usecase.produto.RemoverProdutoPorIdUC;
+import br.com.jovemtech.productordermanager.dto.EmpresaDTO;
+import br.com.jovemtech.productordermanager.usecase.empresa.RemoverEmpresaPorIdUC;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -15,17 +15,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/produto")
+@RequestMapping("/empresa")
 @RequiredArgsConstructor
-public class RemoverProdutoPorIdController {
+public class RemoverEmpresaPorIdController {
 
-    private final RemoverProdutoPorIdUC removerProdutoPorIdUC;
+    private final RemoverEmpresaPorIdUC removerEmpresaPorIdUC;
 
-    @Operation(summary = "EndPoint de Produto", description = "Requisição para remover Produto por ID", tags = {"Deletar Produto"}, operationId = "deletarProduto")
+    @Operation(summary = "EndPoint de Empresa", description = "Requisição para remover Empresa por ID", tags = {"Deletar Empresa"}, operationId = "deletarEmpresa")
     @ApiResponses(value = {@ApiResponse(responseCode = "204", description = "Operação bem sucedida", content = @Content(mediaType = "application/json")),@ApiResponse(responseCode = "400", description = "Formato da requisição incorreto.", content = @Content(schema = @Schema()))})
     @DeleteMapping("/{id}")
-    public ResponseEntity<ProdutoDTO> removerProdutoPorId(@PathVariable Long id) {
-        removerProdutoPorIdUC.execute(id);
+    public ResponseEntity<EmpresaDTO> removerEmpresaPorId(@PathVariable Long id) {
+        removerEmpresaPorIdUC.execute(id);
         return ResponseEntity.noContent().build();
     }
 }

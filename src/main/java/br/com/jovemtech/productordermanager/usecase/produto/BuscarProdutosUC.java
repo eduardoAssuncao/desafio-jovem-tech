@@ -20,6 +20,7 @@ public class BuscarProdutosUC {
     private final ProdutoRepository produtoRepository;
     private final ModelMapper modelMapper;
 
+    //Colocar paginação
     @Transactional(readOnly = true)
     public List<ProdutoGetDTO> execute(){
         try{

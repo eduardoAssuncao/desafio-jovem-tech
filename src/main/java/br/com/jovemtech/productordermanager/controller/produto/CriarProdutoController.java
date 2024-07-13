@@ -23,13 +23,13 @@ import java.net.URI;
 @RequiredArgsConstructor
 public class CriarProdutoController {
 
-    private final CriarProdutoUC criarProduto;
+    private final CriarProdutoUC criarProdutoUC;
 
     @Operation(summary = "EndPoint de Produto", description = "Requisição para realizar a criação de um Produto", tags = {"Criar Produto"}, operationId = "criarProduto", requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @Content(schema = @Schema(implementation = ProdutoDTO.class))))
     @ApiResponses(value = {@ApiResponse(responseCode = "201", description = "Operação bem sucedida", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ProdutoDTO.class))),@ApiResponse(responseCode = "400", description = "Formato da requisição incorreto.", content = @Content(schema = @Schema()))})
     @PostMapping
     public ResponseEntity<ProdutoDTO> criarProduto(@RequestBody ProdutoDTO dto) {
-        ProdutoGetDTO produto = criarProduto.execute(dto);
+        ProdutoGetDTO produto = criarProdutoUC.execute(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(produto.getId()).toUri();
         return ResponseEntity.created(uri).body(dto);

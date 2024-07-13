@@ -19,6 +19,7 @@ public class ClienteSchema {
     private String nome;
     private String email;
     private String cpf;
+    private String password;
 
     @OneToMany(mappedBy = "cliente")
     private Set<PedidoSchema> pedidos = new LinkedHashSet<>();
