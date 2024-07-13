@@ -15,13 +15,11 @@ public class ProdutoDTO {
     private String descricao;
     private BigDecimal preco;
     private Integer quatidadeEtoque;
-    private EmpresaDTO empresa;
 
     public ProdutoDTO(ProdutoSchema produto) {
         this.nome = produto.getNome();
         this.descricao = produto.getDescricao();
         this.preco = produto.getPreco();
         this.quatidadeEtoque = produto.getQuatidadeEtoque();
-        this.empresa = new EmpresaDTO(produto.getEmpresa());
     }
 }

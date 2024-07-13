@@ -44,4 +44,14 @@ public class EmpresaSchema {
     public int hashCode() {
         return 31; // Valor fixo para hashCode, ou pode usar um valor baseado no ID se preferir
     }
+
+    @Override
+    public String toString() {
+        return "EmpresaSchema{" +
+                "id=" + id +
+                ", nomeFantasia='" + nomeFantasia + '\'' +
+                ", endereco='" + endereco + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

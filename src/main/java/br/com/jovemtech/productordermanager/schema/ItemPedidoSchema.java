@@ -1,5 +1,6 @@
 package br.com.jovemtech.productordermanager.schema;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,6 +16,7 @@ import java.math.BigDecimal;
 public class ItemPedidoSchema {
 
     @EmbeddedId
+    @JsonIgnore
     private ItemPedidoPK id = new ItemPedidoPK();
 
     private String nome;
@@ -24,8 +26,13 @@ public class ItemPedidoSchema {
     public ItemPedidoSchema(ProdutoSchema produto, PedidoSchema pedido, Integer quantidade, BigDecimal preco) {
         id.setProduto(produto);
         id.setPedido(pedido);
+        this.nome = produto.getNome();
         this.quantidade = quantidade;
-        this.preco = preco;
+        this.preco = produto.getPreco();
+    }
+
+    public BigDecimal getSubTotal() {
+        return preco.multiply(new BigDecimal(quantidade));
     }
 
     @Override

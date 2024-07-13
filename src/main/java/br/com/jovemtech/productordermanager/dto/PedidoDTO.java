@@ -1,6 +1,7 @@
 package br.com.jovemtech.productordermanager.dto;
 
 import br.com.jovemtech.productordermanager.schema.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,10 +13,14 @@ import java.util.Set;
 @NoArgsConstructor
 public class PedidoDTO {
 
+    @JsonIgnore
     private Instant dataPedido;
+    @JsonIgnore
     private StatusPedido status;
+    @JsonIgnore
     private ClienteDTO cliente;
     //private EmpresaDTO empresa;
+    @JsonIgnore
     private Set<ItemPedidoDTO> itens = new LinkedHashSet<>();
 
     public PedidoDTO(PedidoSchema pedido) {

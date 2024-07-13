@@ -1,6 +1,7 @@
 package br.com.jovemtech.productordermanager.dto;
 
 import br.com.jovemtech.productordermanager.schema.ItemPedidoSchema;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,9 +11,12 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class ItemPedidoDTO {
 
+    @JsonIgnore
     private Long produtoId;
+    @JsonIgnore
     private String nome;
     private Integer quantidade;
+    @JsonIgnore
     private BigDecimal preco;
 
     public ItemPedidoDTO(ItemPedidoSchema itemPedido) {
@@ -23,6 +27,6 @@ public class ItemPedidoDTO {
     }
 
     public BigDecimal getSubTotal() {
-        return preco.multiply(new BigDecimal(quantidade));
+        return this.preco.multiply(new BigDecimal(quantidade));
     }
 }

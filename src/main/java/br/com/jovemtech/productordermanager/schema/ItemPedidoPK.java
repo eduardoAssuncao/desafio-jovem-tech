@@ -21,4 +21,16 @@ public class ItemPedidoPK implements Serializable {
     @JoinColumn(name = "pedido_id")
     private PedidoSchema pedido;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ItemPedidoPK that = (ItemPedidoPK) o;
+        return produto != null && produto.equals(that.produto);
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
 }
