@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 @RestController
 @RequestMapping("/empresa")
 @RequiredArgsConstructor
@@ -26,6 +29,9 @@ public class BuscarEmpresaPorIdController {
     @GetMapping("/{id}")
     public ResponseEntity<EmpresaGetDTO> buscarEmpresaPorId(@PathVariable Long id) {
         EmpresaGetDTO dto = buscarEmpresaPorIdUC.execute(id);
+
+        dto.add(linkTo(methodOn(BuscarEmpresasController.class).buscarEmpresas()).withRel("Lista de empresas"));
+
         return ResponseEntity.ok().body(dto);
     }
 }

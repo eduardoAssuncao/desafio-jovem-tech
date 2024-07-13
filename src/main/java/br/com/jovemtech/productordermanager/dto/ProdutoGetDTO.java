@@ -3,12 +3,13 @@ package br.com.jovemtech.productordermanager.dto;
 import br.com.jovemtech.productordermanager.schema.ProdutoSchema;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
-public class ProdutoGetDTO {
+public class ProdutoGetDTO extends RepresentationModel<ProdutoGetDTO> {
 
     private Long id;
     private String nome;

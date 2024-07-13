@@ -3,13 +3,14 @@ package br.com.jovemtech.productordermanager.dto;
 import br.com.jovemtech.productordermanager.schema.ClienteSchema;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Data
 @NoArgsConstructor
-public class ClienteGetDTO {
+public class ClienteGetDTO extends RepresentationModel<ClienteGetDTO> {
 
     private Long id;
     private String nome;
