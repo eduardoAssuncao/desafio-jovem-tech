@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 @RestController
 @RequestMapping("/produto")
 @RequiredArgsConstructor
@@ -26,6 +29,9 @@ public class BuscarProdutoPorIdController {
     @GetMapping("/{id}")
     public ResponseEntity<ProdutoGetDTO> buscarProdutoPorId(@PathVariable Long id) {
         ProdutoGetDTO dto = buscarProdutoPorIdUC.execute(id);
+
+        dto.add(linkTo(methodOn(BuscarProdutosController.class).buscarProdutos()).withRel("Lista de produtos"));
+
         return ResponseEntity.ok().body(dto);
     }
 }

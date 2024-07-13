@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 @RestController
 @RequestMapping("/cliente")
 @RequiredArgsConstructor
@@ -27,6 +30,15 @@ public class BuscarClientesController {
     @GetMapping
     public ResponseEntity<List<ClienteGetDTO>> buscarClientes(){
         List<ClienteGetDTO> dtos = buscarClientesUC.execute();
+
+        if (!dtos.isEmpty()) {
+            for (ClienteGetDTO cliente : dtos) {
+                Long id = cliente.getId();
+                cliente.add(linkTo(methodOn(BuscarClientePorIdController.class)
+                        .buscarClientePorId(id)).withSelfRel());
+            }
+        }
+
         return ResponseEntity.ok(dtos);
     }
 }

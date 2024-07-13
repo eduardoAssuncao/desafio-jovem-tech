@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 @RestController
 @RequestMapping("/empresa")
 @RequiredArgsConstructor
@@ -27,6 +30,15 @@ public class BuscarEmpresasController {
     @GetMapping
     public ResponseEntity<List<EmpresaGetDTO>> buscarEmpresas() {
         List<EmpresaGetDTO> dtos = buscarEmpresasUC.execute();
+
+        if (!dtos.isEmpty()) {
+            for (EmpresaGetDTO empresa : dtos) {
+                Long id = empresa.getId();
+                empresa.add(linkTo(methodOn(BuscarEmpresaPorIdController.class)
+                        .buscarEmpresaPorId(id)).withSelfRel());
+            }
+        }
+
         return ResponseEntity.ok(dtos);
     }
 }

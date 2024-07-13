@@ -4,6 +4,7 @@ import br.com.jovemtech.productordermanager.schema.PedidoSchema;
 import br.com.jovemtech.productordermanager.schema.StatusPedido;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.time.Instant;
 import java.util.LinkedHashSet;
