@@ -2,15 +2,10 @@ package br.com.jovemtech.productordermanager.usecase.pedido;
 
 import br.com.jovemtech.productordermanager.dto.ItemPedidoDTO;
 import br.com.jovemtech.productordermanager.dto.ItemPedidoGetDTO;
-import br.com.jovemtech.productordermanager.dto.PedidoDTO;
-import br.com.jovemtech.productordermanager.dto.PedidoGetDTO;
 import br.com.jovemtech.productordermanager.infrastructure.repository.ItemPedidoRepository;
 import br.com.jovemtech.productordermanager.infrastructure.repository.PedidoRepository;
 import br.com.jovemtech.productordermanager.infrastructure.repository.ProdutoRepository;
-import br.com.jovemtech.productordermanager.schema.ItemPedidoPK;
-import br.com.jovemtech.productordermanager.schema.ItemPedidoSchema;
-import br.com.jovemtech.productordermanager.schema.PedidoSchema;
-import br.com.jovemtech.productordermanager.schema.ProdutoSchema;
+import br.com.jovemtech.productordermanager.schema.*;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -46,6 +41,7 @@ public class AdicionarItemAoPedidoUC {
         itemPedidoRepository.save(itemPedido);
 
         pedido.getItens().add(itemPedido);
+        pedido.setStatus(StatusPedido.ESPERANDO_PAGAMENTO);
         produto.setQuatidadeEtoque(produto.getQuatidadeEtoque() - dto.getQuantidade());
         pedidoRepository.save(pedido);
         return modelMapper.map(itemPedido, ItemPedidoGetDTO.class);

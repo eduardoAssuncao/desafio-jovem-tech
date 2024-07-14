@@ -24,10 +24,6 @@ public class ProdutoSchema {
     private BigDecimal preco;
     private Integer quatidadeEtoque;
 
-    //Faz sentido poder acessar uma lista de itens no meu Produto?
-//    @OneToMany(mappedBy = "id.produto")
-//    private Set<ItemPedido> itens = new LinkedHashSet<>();
-
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "empresa_id")
