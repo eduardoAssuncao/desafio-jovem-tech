@@ -19,7 +19,6 @@ public class PedidoDTO {
     private StatusPedido status;
     @JsonIgnore
     private ClienteDTO cliente;
-    //private EmpresaDTO empresa;
     @JsonIgnore
     private Set<ItemPedidoDTO> itens = new LinkedHashSet<>();
 
@@ -27,7 +26,6 @@ public class PedidoDTO {
         this.dataPedido = pedido.getDataPedido();
         this.status = pedido.getStatus();
         this.cliente = new ClienteDTO(pedido.getCliente());
-        //this.empresa = new EmpresaDTO(pedido.getEmpresa());
         this.itens.addAll(pedido.getItens().stream().map(ItemPedidoDTO::new).toList());
     }
 }
