@@ -20,7 +20,7 @@ public class ClienteSchema {
     private String nome;
     private String email;
     private String cpf;
-    private String password;
+    //private String password;
 
     @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
     private Set<PedidoSchema> pedidos = new LinkedHashSet<>();
