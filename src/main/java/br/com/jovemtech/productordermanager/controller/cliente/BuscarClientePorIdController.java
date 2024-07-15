@@ -3,11 +3,13 @@ package br.com.jovemtech.productordermanager.controller.cliente;
 import br.com.jovemtech.productordermanager.dto.ClienteGetDTO;
 import br.com.jovemtech.productordermanager.usecase.cliente.BuscarClientePorIdUC;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,9 +29,9 @@ public class BuscarClientePorIdController {
     @Operation(summary = "EndPoint de Cliente", description = "Requisição para buscar Cliente por ID", tags = {"Buscar Cliente Por ID"}, operationId = "buscarClienteId")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Operação bem sucedida", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ClienteGetDTO.class))),@ApiResponse(responseCode = "400", description = "Formato da requisição incorreto.", content = @Content(schema = @Schema()))})
     @GetMapping("/{id}")
-    public ResponseEntity<ClienteGetDTO> buscarClientePorId(@PathVariable Long id) {
+    public ResponseEntity<ClienteGetDTO> buscarClientePorId(@PathVariable Long id, @Parameter(hidden = true) Pageable pageable) {
         ClienteGetDTO dto = buscarClientePorIdUC.execute(id);
-        dto.add(linkTo(methodOn(BuscarClientesController.class).buscarClientes()).withRel("Lista de clientes"));
+        dto.add(linkTo(methodOn(BuscarClientesController.class).buscarClientes(pageable)).withRel("Lista de clientes"));
 
         return ResponseEntity.ok().body(dto);
     }
