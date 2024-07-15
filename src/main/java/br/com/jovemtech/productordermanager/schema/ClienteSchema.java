@@ -4,9 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-import org.springframework.hateoas.RepresentationModel;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -43,7 +40,7 @@ public class ClienteSchema {
 
     @Override
     public int hashCode() {
-        return 31; // Valor fixo para hashCode, ou pode usar um valor baseado no ID se preferir
+        return 31;
     }
 
     @Override

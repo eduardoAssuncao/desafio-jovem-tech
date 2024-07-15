@@ -30,6 +30,6 @@ public class ProdutoDTO {
         this.nome = produto.getNome();
         this.descricao = produto.getDescricao();
         this.preco = produto.getPreco();
-        this.quantidadeEstoque = produto.getQuatidadeEstoque();
+        this.quantidadeEstoque = produto.getQuantidadeEstoque();
     }
 }

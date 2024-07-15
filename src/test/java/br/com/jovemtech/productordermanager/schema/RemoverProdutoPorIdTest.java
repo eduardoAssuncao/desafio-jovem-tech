@@ -62,7 +62,7 @@ public class RemoverProdutoPorIdTest {
         produtoSchema.setNome("TV");
         produtoSchema.setDescricao("TV 4K");
         produtoSchema.setPreco(BigDecimal.valueOf(4000));
-        produtoSchema.setQuatidadeEstoque(10);
+        produtoSchema.setQuantidadeEstoque(10);
         produtoSchema.setEmpresa(empresaSchema);
     }
 

@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -20,7 +22,11 @@ public class ProdutoSchema {
     @Column(columnDefinition = "TEXT")
     private String descricao;
     private BigDecimal preco;
-    private Integer quatidadeEstoque;
+    private Integer quantidadeEstoque;
+
+    @OneToMany(mappedBy = "id.produto", fetch = FetchType.EAGER)
+    @JsonIgnore
+    private Set<ItemPedidoSchema> itens = new LinkedHashSet<>();
 
     @ManyToOne
     @JsonIgnore
@@ -37,6 +43,6 @@ public class ProdutoSchema {
 
     @Override
     public int hashCode() {
-        return 31; // Valor fixo para hashCode, ou pode usar um valor baseado no ID se preferir
+        return 31;
     }
 }

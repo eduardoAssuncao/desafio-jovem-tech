@@ -15,7 +15,7 @@ public class ProdutoGetDTO extends RepresentationModel<ProdutoGetDTO> {
     private String nome;
     private String descricao;
     private BigDecimal preco;
-    private Integer quatidadeEtoque;
+    private Integer quantidadeEstoque;
     private EmpresaDTO empresa;
 
     public ProdutoGetDTO(ProdutoSchema produtoSchema) {
@@ -23,7 +23,7 @@ public class ProdutoGetDTO extends RepresentationModel<ProdutoGetDTO> {
         this.nome = produtoSchema.getNome();
         this.descricao = produtoSchema.getDescricao();
         this.preco = produtoSchema.getPreco();
-        this.quatidadeEtoque = produtoSchema.getQuatidadeEstoque();
+        this.quantidadeEstoque = produtoSchema.getQuantidadeEstoque();
         this.empresa = new EmpresaDTO(produtoSchema.getEmpresa());
     }
 }
