@@ -21,7 +21,7 @@ public class AdicionarItemAoPedidoController {
 
     @Operation(summary = "EndPoint de Pedido", description = "Requisição para adicionar item ao pedido", tags = {"Adicionar item ao pedido"}, operationId = "adicionarItem", requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @Content(schema = @Schema(implementation = ItemPedidoDTO.class))))
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Operação bem sucedida", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ItemPedidoDTO.class))),@ApiResponse(responseCode = "400", description = "Formato da requisição incorreto.", content = @Content(schema = @Schema()))})
-    @PutMapping("/{idDoPedido}/{idDoProduto}")
+    @PutMapping("/adicionar/{idDoPedido}/{idDoProduto}")
     public ResponseEntity<ItemPedidoGetDTO> adicionarItemAoPedido(@PathVariable Long idDoPedido,
                                                                   @PathVariable Long idDoProduto,
                                                                   @Valid @RequestBody ItemPedidoDTO dto){

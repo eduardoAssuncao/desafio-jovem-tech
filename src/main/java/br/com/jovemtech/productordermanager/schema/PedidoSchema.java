@@ -27,7 +27,7 @@ public class PedidoSchema {
     @JoinColumn(name = "client_id")
     private ClienteSchema cliente;
 
-    @OneToMany(mappedBy = "id.pedido", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "id.pedido", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<ItemPedidoSchema> itens = new LinkedHashSet<>();
 

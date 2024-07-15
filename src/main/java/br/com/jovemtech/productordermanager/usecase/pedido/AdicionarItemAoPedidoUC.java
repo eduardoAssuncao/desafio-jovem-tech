@@ -32,8 +32,7 @@ public class AdicionarItemAoPedidoUC {
         try{
             if(produto.getQuantidadeEstoque() >= dto.getQuantidade()
                     && pedido.getStatus() != StatusPedido.PAGO
-                    && pedido.getStatus() != StatusPedido.FINALIZADO
-                    && pedido.getStatus() != StatusPedido.ESPERANDO_PAGAMENTO){
+                    && pedido.getStatus() != StatusPedido.FINALIZADO){
 
                 ItemPedidoPK itemPedidoPK = new ItemPedidoPK();
                 itemPedidoPK.setPedido(pedido);
