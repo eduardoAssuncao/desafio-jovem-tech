@@ -28,14 +28,20 @@ Para executar a API localmente, certifique-se de ter instalado:
 
 ### Iniciando a API
 
-1. Clone o repositório e execute o projeto:
+1. Clone o repositório:
 
    ```bash
    git clone https://github.com/eduardoAssuncao/ProductOrderManager.git
    cd ProductOrderManager
    ```
+   
+2. Mude a branch e execute o projeto:
 
-2. Ou inicie a API com o Docker:
+   ```bash
+   git checkout dev
+   ```
+
+3. Ou clone o repositório e inicie a API com o Docker utilizando o terminal:
 
     ```bash
     docker-compose up -d --build
