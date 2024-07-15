@@ -8,6 +8,10 @@ import br.com.jovemtech.productordermanager.schema.ClienteSchema;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,11 +26,12 @@ public class BuscarClientesUC {
     private final ModelMapper modelMapper;
 
     @Transactional(readOnly = true)
-    public List<ClienteGetDTO> execute(){
+    public Page<ClienteGetDTO> execute(Pageable pageable){
         try{
-            List<ClienteSchema> clientes = clienteRepository.findAll();
-            return clientes.stream().map(cliente ->
-                    modelMapper.map(cliente, ClienteGetDTO.class)).collect(Collectors.toList());
+            //Pageable pageRequest = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.unsorted());
+            Page<ClienteSchema> clientes = clienteRepository.findAll(pageable);
+            return clientes.map(cliente ->
+                    modelMapper.map(cliente, ClienteGetDTO.class));
         } catch (EntityNotFoundException e){
             throw new ResourceNotFoundException(e.getMessage());
         }
