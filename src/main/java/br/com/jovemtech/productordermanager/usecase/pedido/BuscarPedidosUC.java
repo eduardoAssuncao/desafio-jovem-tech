@@ -1,6 +1,5 @@
 package br.com.jovemtech.productordermanager.usecase.pedido;
 
-import br.com.jovemtech.productordermanager.config.exception.ResourceNotFoundException;
 import br.com.jovemtech.productordermanager.dto.PedidoGetDTO;
 import br.com.jovemtech.productordermanager.infrastructure.repository.PedidoRepository;
 import br.com.jovemtech.productordermanager.schema.PedidoSchema;

@@ -1,7 +1,6 @@
 package br.com.jovemtech.productordermanager.usecase.cliente;
 
 import br.com.jovemtech.productordermanager.config.exception.ResourceNotFoundException;
-import br.com.jovemtech.productordermanager.dto.ClienteDTO;
 import br.com.jovemtech.productordermanager.dto.ClienteGetDTO;
 import br.com.jovemtech.productordermanager.infrastructure.repository.ClienteRepository;
 import br.com.jovemtech.productordermanager.schema.ClienteSchema;

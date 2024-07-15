@@ -32,11 +32,4 @@ public class ControllerExceptionHandler {
         }
         return ResponseEntity.status(status).body(err);
     }
-
-//    @Override
-//    protected ResponseEntity<Object> handleExceptionInternal(Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatusCode statusCode, WebRequest request) {
-//        CustomError err = new CustomError(Instant.now(), statusCode.value(), ex.getMessage(), request.getContextPath());
-//        return ResponseEntity.status(statusCode).body(err);
-//    }
-
 }

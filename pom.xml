@@ -118,32 +118,7 @@
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
                 <version>6.6.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
 <!--                            http://localhost:8080/swagger-ui/index.html-->
-                            <inputSpec>
-                                ${project.basedir}/src/main/resources/swagger.yaml
-                            </inputSpec>
-                            <generatorName>spring</generatorName>
-                            <apiPackage>com.jovemtech.springswaggercodegen3.api</apiPackage>
-                            <modelPackage>com.jovemtech.springswaggercodegen3.model</modelPackage>
-                            <supportingFilesToGenerate>
-                                ApiUtil.java
-                            </supportingFilesToGenerate>
-                            <configOptions>
-                                <sourceFolder>src/main/java/</sourceFolder>
-                                <delegatePattern>true</delegatePattern>
-                                <interfaceOnly>true</interfaceOnly>
-                                <useJakartaEe>true</useJakartaEe>
-                                <!--								<useSpringBoot3>true</useSpringBoot3>-->
-                            </configOptions>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
