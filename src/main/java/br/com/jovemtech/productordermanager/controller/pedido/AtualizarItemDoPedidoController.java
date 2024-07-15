@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class AtualizarItemDoPedidoController {
     @PutMapping("/{idPedido}/{idProduto}")
     public ResponseEntity<PedidoGetDTO> atualizarItemDoPedido(@PathVariable Long idPedido,
                                                               @PathVariable Long idProduto,
-                                                              @RequestBody ItemPedidoDTO dto){
+                                                              @Valid @RequestBody ItemPedidoDTO dto){
 
        PedidoGetDTO pedido = atualizarItemDoPedidoUC.execute(idPedido, idProduto, dto);
        return ResponseEntity.ok(pedido);

@@ -17,7 +17,7 @@ public class RemoverEmpresaPorIdUC {
     @Transactional(propagation = Propagation.SUPPORTS)
     public void execute(Long id){
         if(!empresaRepository.existsById(id)){
-            throw new ResourceNotFoundException ("Erro ao buscar produto com o id " + id);
+            throw new ResourceNotFoundException ("Erro ao buscar empresa com o id " + id);
         }
         try{
             empresaRepository.deleteById(id);

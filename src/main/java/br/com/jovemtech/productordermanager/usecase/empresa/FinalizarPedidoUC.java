@@ -1,48 +1,39 @@
-package br.com.jovemtech.productordermanager.usecase.cliente;
+package br.com.jovemtech.productordermanager.usecase.empresa;
 
 import br.com.jovemtech.productordermanager.config.exception.ResourceNotFoundException;
 import br.com.jovemtech.productordermanager.dto.PedidoGetDTO;
-import br.com.jovemtech.productordermanager.infrastructure.repository.ClienteRepository;
 import br.com.jovemtech.productordermanager.infrastructure.repository.PedidoRepository;
-import br.com.jovemtech.productordermanager.schema.ClienteSchema;
 import br.com.jovemtech.productordermanager.schema.PedidoSchema;
 import br.com.jovemtech.productordermanager.schema.StatusPedido;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class RealizarPagamentoUC {
-
-    private final ClienteRepository clienteRepository;
+public class FinalizarPedidoUC {
 
     private final PedidoRepository pedidoRepository;
+    private final ModelMapper modelMapper;
 
     @Transactional
-    public PedidoGetDTO execute(Long idCliente, Long idPedido){
-        if(!clienteRepository.existsById(idCliente)){
-            throw new ResourceNotFoundException("Erro ao buscar cliente com o id " + idCliente);
-        }
+    public PedidoGetDTO execute(long idPedido){
         if(!pedidoRepository.existsById(idPedido)){
             throw new ResourceNotFoundException("Erro ao buscar pedido com o id " + idPedido);
         }
         try{
-
-            ClienteSchema cliente = clienteRepository.getReferenceById(idCliente);
             PedidoSchema pedido = pedidoRepository.getReferenceById(idPedido);
-
-            if(!cliente.getPedidos().contains(pedido)){
-                throw new ResourceNotFoundException("Pedido com id " + idPedido + " não pertence ao cliente com id " + idCliente);
+            if(pedido.getStatus().equals(StatusPedido.PAGO)){
+                pedido.setStatus(StatusPedido.FINALIZADO);
+            } else {
+                throw new RuntimeException("Ainda não foi realizado o pagamento do pedido com id " + idPedido);
             }
-
-            pedido.setStatus(StatusPedido.PAGO);
             pedidoRepository.save(pedido);
-            return new PedidoGetDTO(pedido);
-
+            return modelMapper.map(pedido, PedidoGetDTO.class);
         } catch (EntityNotFoundException e){
-            throw new ResourceNotFoundException("Erro ao buscar cliente ou pedido com os ids fornecidos");
+            throw new ResourceNotFoundException(e.getMessage());
         }
     }
 }
