@@ -16,7 +16,6 @@ public class EmpresaGetDTO extends RepresentationModel<EmpresaGetDTO> {
     private String nomeFantasia;
     private String endereco;
     private String email;
-    //private Set<PedidoDTO> pedidos = new LinkedHashSet<>();
     private Set<ClienteDTO> clientes = new LinkedHashSet<>();
     private Set<ProdutoDTO> produtos = new LinkedHashSet<>();
 
@@ -25,7 +24,6 @@ public class EmpresaGetDTO extends RepresentationModel<EmpresaGetDTO> {
         this.nomeFantasia = empresa.getNomeFantasia();
         this.endereco = empresa.getEndereco();
         this.email = empresa.getEmail();
-       // this.pedidos.addAll(empresa.getPedidos().stream().map(PedidoDTO::new).toList());
         this.clientes.addAll(empresa.getClientes().stream().map(ClienteDTO::new).toList());
         this.produtos.addAll(empresa.getProdutos().stream().map(ProdutoDTO::new).toList());
     }

@@ -1,7 +1,6 @@
 package br.com.jovemtech.productordermanager.schema;
 
 import br.com.jovemtech.productordermanager.dto.ProdutoDTO;
-import br.com.jovemtech.productordermanager.dto.ProdutoGetDTO;
 import br.com.jovemtech.productordermanager.infrastructure.repository.ProdutoRepository;
 import br.com.jovemtech.productordermanager.usecase.produto.AtualizarProdutoPorIdUC;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,14 +40,14 @@ public class AtualizarProdutoPorIdTest {
         produtoDTO.setNome("TV LG");
         produtoDTO.setDescricao("TV 8K");
         produtoDTO.setPreco(BigDecimal.valueOf(8500));
-        produtoDTO.setQuatidadeEtoque(20);
+        produtoDTO.setQuantidadeEstoque(10);
 
         produtoSchema = new ProdutoSchema();
         produtoSchema.setId(1L);
         produtoSchema.setNome("TV SAMSUNG");
         produtoSchema.setDescricao("TV 4K");
         produtoSchema.setPreco(BigDecimal.valueOf(5000));
-        produtoSchema.setQuatidadeEtoque(10);
+        produtoSchema.setQuatidadeEstoque(10);
     }
 
     @Test
@@ -62,7 +61,7 @@ public class AtualizarProdutoPorIdTest {
             destination.setNome(source.getNome());
             destination.setDescricao(source.getDescricao());
             destination.setPreco(source.getPreco());
-            destination.setQuatidadeEtoque(source.getQuatidadeEtoque());
+            destination.setQuatidadeEstoque(source.getQuantidadeEstoque());
             return destination;
         }).when(modelMapper).map(any(ProdutoDTO.class), any(ProdutoSchema.class));
 
@@ -77,7 +76,7 @@ public class AtualizarProdutoPorIdTest {
         System.out.println(result);
         assertEquals("TV LG", result.getNome());
         assertEquals(BigDecimal.valueOf(8500), result.getPreco());
-        assertEquals(20 , result.getQuatidadeEtoque());
+        assertEquals(20 , result.getQuantidadeEstoque());
         verify(produtoRepository, times(1)).save(any(ProdutoSchema.class));
     }
 }

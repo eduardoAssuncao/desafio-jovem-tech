@@ -23,7 +23,7 @@ public class ProdutoGetDTO extends RepresentationModel<ProdutoGetDTO> {
         this.nome = produtoSchema.getNome();
         this.descricao = produtoSchema.getDescricao();
         this.preco = produtoSchema.getPreco();
-        this.quatidadeEtoque = produtoSchema.getQuatidadeEtoque();
+        this.quatidadeEtoque = produtoSchema.getQuatidadeEstoque();
         this.empresa = new EmpresaDTO(produtoSchema.getEmpresa());
     }
 }

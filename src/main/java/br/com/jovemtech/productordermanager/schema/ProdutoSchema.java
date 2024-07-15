@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
 @Data
@@ -22,7 +20,7 @@ public class ProdutoSchema {
     @Column(columnDefinition = "TEXT")
     private String descricao;
     private BigDecimal preco;
-    private Integer quatidadeEtoque;
+    private Integer quatidadeEstoque;
 
     @ManyToOne
     @JsonIgnore

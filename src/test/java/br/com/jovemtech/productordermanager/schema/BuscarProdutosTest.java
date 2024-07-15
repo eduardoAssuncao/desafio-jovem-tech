@@ -46,7 +46,7 @@ public class BuscarProdutosTest {
         produto1.setNome("TV LG");
         produto1.setDescricao("TV 4K");
         produto1.setPreco(BigDecimal.valueOf(5000));
-        produto1.setQuatidadeEtoque(10);
+        produto1.setQuatidadeEstoque(10);
         produto1.setEmpresa(empresaSchema1);
 
         ProdutoSchema produto2 = new ProdutoSchema();
@@ -54,7 +54,7 @@ public class BuscarProdutosTest {
         produto2.setNome("TV SAMSUNG");
         produto2.setDescricao("TV 8K");
         produto2.setPreco(BigDecimal.valueOf(8000));
-        produto2.setQuatidadeEtoque(20);
+        produto2.setQuatidadeEstoque(20);
         produto2.setEmpresa(empresaSchema1);
 
         produtos.add(produto1);

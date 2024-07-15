@@ -46,7 +46,7 @@ class CriarProdutoTest {
         produtoDTO.setNome("TV");
         produtoDTO.setDescricao("TV 4K");
         produtoDTO.setPreco(BigDecimal.valueOf(4000));
-        produtoDTO.setQuatidadeEtoque(10);
+        produtoDTO.setQuantidadeEstoque(10);
 
         empresaSchema = new EmpresaSchema();
         empresaSchema.setId(1L);
@@ -59,7 +59,7 @@ class CriarProdutoTest {
         produtoSchema.setNome("TV");
         produtoSchema.setDescricao("TV 4K");
         produtoSchema.setPreco(BigDecimal.valueOf(4000));
-        produtoSchema.setQuatidadeEtoque(10);
+        produtoSchema.setQuatidadeEstoque(10);
         produtoSchema.setEmpresa(empresaSchema);
     }
 
