@@ -1,11 +1,8 @@
 package br.com.jovemtech.productordermanager.controller.empresa;
 
-import br.com.jovemtech.productordermanager.dto.EmpresaDTO;
 import br.com.jovemtech.productordermanager.dto.PedidoGetDTO;
 import br.com.jovemtech.productordermanager.usecase.empresa.FinalizarPedidoUC;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;

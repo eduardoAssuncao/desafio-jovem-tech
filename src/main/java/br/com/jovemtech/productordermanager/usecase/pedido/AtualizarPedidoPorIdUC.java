@@ -23,7 +23,7 @@ public class AtualizarPedidoPorIdUC {
             throw new ResourceNotFoundException("Erro ao buscar cliente com o id " + id);
         }
         try{
-            PedidoSchema pedido = pedidoRepository.getById(id);
+            PedidoSchema pedido = pedidoRepository.getReferenceById(id);
             modelMapper.map(pedido, dto);
             pedidoRepository.save(pedido);
             return modelMapper.map(pedido, PedidoDTO.class);

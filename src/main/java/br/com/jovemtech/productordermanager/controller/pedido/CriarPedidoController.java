@@ -1,6 +1,5 @@
 package br.com.jovemtech.productordermanager.controller.pedido;
 
-import br.com.jovemtech.productordermanager.dto.ClienteDTO;
 import br.com.jovemtech.productordermanager.dto.PedidoDTO;
 import br.com.jovemtech.productordermanager.dto.PedidoGetDTO;
 import br.com.jovemtech.productordermanager.usecase.pedido.CriarPedidoUC;

@@ -1,11 +1,8 @@
 package br.com.jovemtech.productordermanager.usecase.empresa;
 
 import br.com.jovemtech.productordermanager.config.exception.ResourceNotFoundException;
-import br.com.jovemtech.productordermanager.dto.ClienteGetDTO;
-import br.com.jovemtech.productordermanager.dto.EmpresaDTO;
 import br.com.jovemtech.productordermanager.dto.EmpresaGetDTO;
 import br.com.jovemtech.productordermanager.infrastructure.repository.EmpresaRepository;
-import br.com.jovemtech.productordermanager.schema.ClienteSchema;
 import br.com.jovemtech.productordermanager.schema.EmpresaSchema;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;

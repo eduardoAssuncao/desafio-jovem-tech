@@ -7,11 +7,10 @@ import br.com.jovemtech.productordermanager.schema.ProdutoSchema;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -20,13 +19,12 @@ public class BuscarProdutosUC {
     private final ProdutoRepository produtoRepository;
     private final ModelMapper modelMapper;
 
-    //Colocar paginação
     @Transactional(readOnly = true)
-    public List<ProdutoGetDTO> execute(){
+    public Page<ProdutoGetDTO> execute(Pageable pageable){
         try{
-            List<ProdutoSchema> produtos = produtoRepository.findAll();
-            return produtos.stream().map(produto ->
-                    modelMapper.map(produto, ProdutoGetDTO.class)).collect(Collectors.toList());
+            Page<ProdutoSchema> produtos = produtoRepository.findAll(pageable);
+            return produtos.map(produto ->
+                    modelMapper.map(produto, ProdutoGetDTO.class));
 
         } catch (EntityNotFoundException e){
             throw new ResourceNotFoundException(e.getMessage());

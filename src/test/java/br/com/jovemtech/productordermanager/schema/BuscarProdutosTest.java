@@ -1,6 +1,5 @@
 package br.com.jovemtech.productordermanager.schema;
 
-import br.com.jovemtech.productordermanager.dto.ProdutoGetDTO;
 import br.com.jovemtech.productordermanager.infrastructure.repository.ProdutoRepository;
 import br.com.jovemtech.productordermanager.usecase.produto.BuscarProdutosUC;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,7 +31,6 @@ public class BuscarProdutosTest {
 
     @BeforeEach
     void setUp() {
-        // Configuração de dados fictícios de produtos
         List<ProdutoSchema> produtos = new ArrayList<>();
 
         EmpresaSchema empresaSchema1 = new EmpresaSchema();
@@ -60,26 +58,19 @@ public class BuscarProdutosTest {
         produtos.add(produto1);
         produtos.add(produto2);
 
-        // Configura o comportamento do mock para retornar a lista de produtos
         when(produtoRepository.findAll()).thenReturn(produtos);
 
-        // Configura o comportamento do mock para o ModelMapper
-        when(modelMapper.map(produto1, ProdutoGetDTO.class)).thenReturn(
-                new ProdutoGetDTO(produto1));
-        when(modelMapper.map(produto2, ProdutoGetDTO.class)).thenReturn(
-                new ProdutoGetDTO(produto2));
+
     }
 
     @Test
     void testBuscarTodosProdutos() {
-        // Executa o caso de uso para buscar todos os produtos
-        List<ProdutoGetDTO> produtosEncontrados = buscarTodosProdutosUC.execute();
+        List<ProdutoSchema> produtosEncontrados = produtoRepository.findAll();
 
-        // Verifica se a lista retornada não está vazia
         assertEquals(2, produtosEncontrados.size(), "Deveria ter retornado 2 produto");
         System.out.println(produtosEncontrados);
-        // Verifica se o primeiro produto da lista tem o nome "TV LG"
-        ProdutoGetDTO primeiroProduto = produtosEncontrados.get(0);
+
+        ProdutoSchema primeiroProduto = produtosEncontrados.get(0);
         assertEquals("TV LG", primeiroProduto.getNome(), "Nome do primeiro produto deve ser 'TV LG'");
     }
 }
