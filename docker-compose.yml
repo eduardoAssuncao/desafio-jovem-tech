@@ -1,0 +1,15 @@
+services:
+  product-order-manager:
+    image: product-order-manager
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:h2:mem:pulsedb
+      - SPRING_DATASOURCE_USERNAME=sa
+      - SPRING_DATASOURCE_PASSWORD=
+      - SPRING_JPA_SHOW_SQL=true
+      - SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=true
+      - SERVER_ERROR_INCLUDE_STACKTRACE=never
+      - SPRINGDOC_SWAGGER_UI_TAGSSORTER=alpha
+      - SPRINGDOC_SWAGGER-UI.path=/
