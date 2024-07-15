@@ -15,7 +15,7 @@ ProductOrderManager é uma API RESTful desenvolvida para gerenciar clientes, pro
 
 ## Diagrama Entidade Relacionamento
 
-![Diagrama](https://i.imgur.com/VNeEN3c.png)
+![Diagrama](https://i.imgur.com/0t1a2qS.png)
 
 ## Requisitos de Instalação
 
