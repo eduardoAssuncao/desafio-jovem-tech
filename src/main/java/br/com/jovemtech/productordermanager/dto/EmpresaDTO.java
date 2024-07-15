@@ -1,26 +1,24 @@
 package br.com.jovemtech.productordermanager.dto;
 
 import br.com.jovemtech.productordermanager.schema.EmpresaSchema;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
 public class EmpresaDTO {
 
+    @NotBlank(message = "O nome fantasia não pode estar em branco")
     private String nomeFantasia;
+
+    @NotBlank(message = "O endereço não pode estar em branco")
     private String endereco;
+
+    @NotBlank(message = "O e-mail não pode estar em branco")
+    @Email(message = "E-mail deve ser válido")
     private String email;
-    //@JsonIgnore
-    //private Set<PedidoDTO> pedidos = new LinkedHashSet<>();
-    //@JsonIgnore
-    //private Set<ClienteDTO> clientes = new LinkedHashSet<>();
-    //@JsonIgnore
-    //private Set<ProdutoDTO> produtos = new LinkedHashSet<>();
 
     public EmpresaDTO(String nomeFantasia, String endereco, String email) {
         this.nomeFantasia = nomeFantasia;
@@ -32,8 +30,5 @@ public class EmpresaDTO {
         this.nomeFantasia = empresa.getNomeFantasia();
         this.endereco = empresa.getEndereco();
         this.email = empresa.getEmail();
-        //this.pedidos.addAll(empresa.getPedidos().stream().map(PedidoDTO::new).toList());
-        //this.clientes.addAll(empresa.getClientes().stream().map(ClienteDTO::new).toList());
-        //this.produtos.addAll(empresa.getProdutos().stream().map(ProdutoDTO::new).toList());
     }
 }

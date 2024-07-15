@@ -42,7 +42,7 @@ public class AdicionarItemAoPedidoUC {
 
         pedido.getItens().add(itemPedido);
         pedido.setStatus(StatusPedido.ESPERANDO_PAGAMENTO);
-        produto.setQuatidadeEtoque(produto.getQuatidadeEtoque() - dto.getQuantidade());
+        produto.setQuatidadeEstoque(produto.getQuatidadeEstoque() - dto.getQuantidade());
         pedidoRepository.save(pedido);
         return modelMapper.map(itemPedido, ItemPedidoGetDTO.class);
     }

@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,7 @@ public class AdicionarItemAoPedidoController {
     @PutMapping("/{idDoPedido}/{idDoProduto}")
     public ResponseEntity<ItemPedidoGetDTO> adicionarItemAoPedido(@PathVariable Long idDoPedido,
                                                                   @PathVariable Long idDoProduto,
-                                                                  @RequestBody ItemPedidoDTO dto){
+                                                                  @Valid @RequestBody ItemPedidoDTO dto){
 
         var pedido = adicionarItemAoPedidoUC.execute(idDoPedido, idDoProduto, dto);
         return ResponseEntity.ok().body(pedido);

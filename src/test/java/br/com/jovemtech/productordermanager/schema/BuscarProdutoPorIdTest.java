@@ -3,7 +3,6 @@ package br.com.jovemtech.productordermanager.schema;
 import br.com.jovemtech.productordermanager.dto.EmpresaDTO;
 import br.com.jovemtech.productordermanager.dto.ProdutoGetDTO;
 import br.com.jovemtech.productordermanager.infrastructure.repository.ProdutoRepository;
-import br.com.jovemtech.productordermanager.schema.ProdutoSchema;
 import br.com.jovemtech.productordermanager.usecase.produto.BuscarProdutoPorIdUC;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -53,7 +52,7 @@ public class BuscarProdutoPorIdTest {
         produtoSchema.setNome("TV");
         produtoSchema.setDescricao("TV 4K");
         produtoSchema.setPreco(BigDecimal.valueOf(4000));
-        produtoSchema.setQuatidadeEtoque(10);
+        produtoSchema.setQuatidadeEstoque(10);
         produtoSchema.setEmpresa(empresaSchema);
     }
 
