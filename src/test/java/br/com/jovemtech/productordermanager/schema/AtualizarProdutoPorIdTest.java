@@ -47,7 +47,7 @@ public class AtualizarProdutoPorIdTest {
         produtoSchema.setNome("TV SAMSUNG");
         produtoSchema.setDescricao("TV 4K");
         produtoSchema.setPreco(BigDecimal.valueOf(5000));
-        produtoSchema.setQuatidadeEstoque(10);
+        produtoSchema.setQuantidadeEstoque(10);
     }
 
     @Test
@@ -61,7 +61,7 @@ public class AtualizarProdutoPorIdTest {
             destination.setNome(source.getNome());
             destination.setDescricao(source.getDescricao());
             destination.setPreco(source.getPreco());
-            destination.setQuatidadeEstoque(source.getQuantidadeEstoque());
+            destination.setQuantidadeEstoque(source.getQuantidadeEstoque());
             return destination;
         }).when(modelMapper).map(any(ProdutoDTO.class), any(ProdutoSchema.class));
 

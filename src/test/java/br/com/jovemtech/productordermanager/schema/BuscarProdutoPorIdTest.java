@@ -52,7 +52,7 @@ public class BuscarProdutoPorIdTest {
         produtoSchema.setNome("TV");
         produtoSchema.setDescricao("TV 4K");
         produtoSchema.setPreco(BigDecimal.valueOf(4000));
-        produtoSchema.setQuatidadeEstoque(10);
+        produtoSchema.setQuantidadeEstoque(10);
         produtoSchema.setEmpresa(empresaSchema);
     }
 
@@ -69,7 +69,7 @@ public class BuscarProdutoPorIdTest {
         assertEquals("TV", result.getNome());
         assertEquals(new BigDecimal(4000) , result.getPreco());
         assertEquals("TV 4K" , result.getDescricao());
-        assertEquals(10 , result.getQuatidadeEtoque());
+        assertEquals(10 , result.getQuantidadeEstoque());
         assertEquals(new EmpresaDTO("Mateus", "Cohama", "mateus@gmail.com")
                 , result.getEmpresa());
     }

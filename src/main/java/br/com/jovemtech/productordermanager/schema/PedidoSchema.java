@@ -31,10 +31,6 @@ public class PedidoSchema {
     @JsonIgnore
     private Set<ItemPedidoSchema> itens = new LinkedHashSet<>();
 
-    //@ManyToOne
-    //@JoinColumn(name = "empresa_id")
-    //private EmpresaSchema empresa;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
