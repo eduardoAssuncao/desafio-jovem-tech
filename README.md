@@ -44,5 +44,8 @@ Para executar a API localmente, certifique-se de ter instalado:
 ## Documentação
 A documentação detalhada da API está disponível via Swagger em: `http://localhost:8080/swagger-ui/index.html`
 
+##Fluxo do Swagger para testar API:
+Criar Empresa -> Criar Cliente -> Criar Produto -> Criar Pedido -> Adionar Item ao Pedido -> Realizar Pagamento do Pedido
+
 ## Contribuindo
 Fique à vontade para contribuir com novas funcionalidades, correções de bugs ou sugestões de melhorias.
