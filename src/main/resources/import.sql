@@ -9,9 +9,12 @@ INSERT INTO tb_cliente (id, nome, email, cpf, empresa_id) VALUES (2, 'Cliente B'
 INSERT INTO tb_produto (id, nome, descricao, preco, quantidade_estoque, empresa_id) VALUES (1, 'Produto 1', 'Descrição do Produto 1', 100.00, 10, 1);
 INSERT INTO tb_produto (id, nome, descricao, preco, quantidade_estoque, empresa_id) VALUES (2, 'Produto 2', 'Descrição do Produto 2', 200.00, 20, 1);
 
+
 -- Seed de Pedido
 INSERT INTO tb_pedido (id, data_pedido, status, client_id) VALUES (1, '2024-07-15T10:00:00Z', 1, 1);
 INSERT INTO tb_pedido (id, data_pedido, status, client_id) VALUES (2, '2024-07-15T11:00:00Z', 1, 2);
+INSERT INTO tb_pedido (id, data_pedido, status, client_id) VALUES (3, '2024-07-15T10:00:00Z', 2, 1);
+INSERT INTO tb_pedido (id, data_pedido, status, client_id) VALUES (4, '2024-07-15T11:00:00Z', 3, 2);
 
 -- Seed de ItemPedido
 INSERT INTO tb_item_pedido (pedido_id, produto_id, quantidade, preco, nome) VALUES (1, 1, 2, 100.00, select nome from tb_produto where id = 1);
