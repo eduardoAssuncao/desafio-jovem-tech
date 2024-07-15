@@ -31,8 +31,7 @@ Para executar a API localmente, certifique-se de ter instalado:
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/eduardoAssuncao/ProductOrderManager.git
-   cd ProductOrderManager
+   git clone https://github.com/eduardoAssuncao/desafio-jovem-tech.git
    ```
    
 2. Mude a branch e execute o projeto:
