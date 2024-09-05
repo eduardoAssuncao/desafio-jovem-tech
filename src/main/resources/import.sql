@@ -1,4 +1,4 @@
--- Seed de Empresa
+/*-- Seed de Empresa
 INSERT INTO tb_empresa (id, nome_fantasia, endereco, email) VALUES (1, 'Empresa A', 'Rua A, 123', 'contato@empresaA.com');
 
 -- Seed de Cliente
